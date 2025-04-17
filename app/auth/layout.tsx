@@ -1,8 +1,12 @@
-import { Box } from "@mui/material";
-import React from "react";
+import { Box } from '@mui/material';
+import React from 'react';
 
-export default function AuthLayout({ children }: { children: React.ReactNode}){
+export default function AuthLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <Box className="h-screen flex items-center justify-center">{children}</Box>
-  )
+    <Box className='flex h-screen items-center justify-center'>{children}</Box>
+  );
 }

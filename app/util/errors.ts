@@ -1,4 +1,4 @@
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getErrorMessage = (response: any) => {
   if (response.message) {
     if (Array.isArray(response.message)) {
@@ -6,7 +6,7 @@ export const getErrorMessage = (response: any) => {
     }
     return formatErrorMessage(response.message);
   }
-  return 'Unkown error occurred';
+  return 'Unknown error occurred';
 };
 
 const formatErrorMessage = (message: string) => {

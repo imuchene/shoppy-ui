@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers';
-import { API_URL } from '../environments/environment';
+import { API_URL } from '../constants/environment';
 import { getErrorMessage } from './errors';
 
 const getHeaders = async () => {

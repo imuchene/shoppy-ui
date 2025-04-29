@@ -1,8 +1,8 @@
 'use server';
 
 import { FormError } from '@/app/common/interfaces/form-error.interface';
-import { API_URL } from '@/app/environments/environment';
-import { getErrorMessage } from '@/app/util/errors';
+import { API_URL } from '@/app/common/constants/environment';
+import { getErrorMessage } from '@/app/common/util/errors';
 import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';

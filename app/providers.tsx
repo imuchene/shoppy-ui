@@ -16,7 +16,6 @@ export default function Providers({ children, authenticated }: ProviderProps) {
     <AppRouterCacheProvider>
       <ThemeProvider theme={darkTheme}>
         <AuthContext.Provider value={authenticated}>
-          {' '}
           {children}
         </AuthContext.Provider>
       </ThemeProvider>

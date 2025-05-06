@@ -5,8 +5,8 @@ import { getErrorMessage } from './errors';
 const getHeaders = async () => {
   const cookieStore = await cookies();
   const requestHeaders = new Headers();
-  requestHeaders.append('Cookie', cookieStore.toString());
-  requestHeaders.append('Content-Type', 'application/json');
+  requestHeaders.set('Cookie', cookieStore.toString());
+  requestHeaders.set('Content-Type', 'application/json');
   return requestHeaders;
 };
 
@@ -15,6 +15,7 @@ export const post = async (path: string, formData: FormData) => {
     method: 'POST',
     headers: await getHeaders(),
     body: JSON.stringify(Object.fromEntries(formData)),
+    cache: 'no-store',
   });
 
   const parsedRes = await res.json();
@@ -27,10 +28,9 @@ export const post = async (path: string, formData: FormData) => {
 };
 
 export const get = async (path: string) => {
-  const headers = await getHeaders();
-
   const res = await fetch(`${API_URL}/${path}`, {
-    headers: headers,
+    headers: await getHeaders(),
+    cache: 'no-store',
   });
 
   return res.json();

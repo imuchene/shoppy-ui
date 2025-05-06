@@ -38,8 +38,6 @@ export default function Header({ logout }: HeaderProps) {
   };
 
   const pages = isAuthenticated ? routes : unauthenticatedRoutes;
-  console.log('pages', pages);
-  console.log('is authenticated', isAuthenticated);
 
   return (
     <AppBar position='static'>

@@ -7,6 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { CookieNames } from '@/app/common/enums/cookie-names.enum';
+import { revalidatePath } from 'next/cache';
 
 export default async function login(_prevState: FormError, formData: FormData) {
   const res = await fetch(`${API_URL}/auth/login`, {
@@ -23,7 +24,7 @@ export default async function login(_prevState: FormError, formData: FormData) {
   }
 
   setAuthCookie(res);
-
+  revalidatePath('/');
   redirect('/');
 }
 

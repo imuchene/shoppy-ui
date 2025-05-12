@@ -2,9 +2,9 @@
 
 import { Box, Button, Modal, Stack, TextField } from '@mui/material';
 import { useState } from 'react';
-import { FormResponse } from '../common/interfaces/form-response.interface';
-import createProduct from './create-product';
-import NumberInput from '../common/util/number-input';
+import { FormResponse } from '../../common/interfaces/form-response.interface';
+import createProduct from '../actions/create-product';
+import NumberInput from '../../common/util/number-input';
 
 const styles = {
   position: 'absolute',

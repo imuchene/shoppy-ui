@@ -15,7 +15,6 @@ export const post = async (path: string, formData: FormData) => {
     method: 'POST',
     headers: await getHeaders(),
     body: JSON.stringify(Object.fromEntries(formData)),
-    cache: 'no-store',
   });
 
   const parsedRes = await res.json();
@@ -27,10 +26,10 @@ export const post = async (path: string, formData: FormData) => {
   return { error: '' };
 };
 
-export const get = async <T>(path: string) => {
+export const get = async <T>(path: string, tags?: string[]) => {
   const res = await fetch(`${API_URL}/${path}`, {
     headers: await getHeaders(),
-    cache: 'no-store',
+    next: { tags },
   });
 
   return res.json() as T;

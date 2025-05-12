@@ -6,6 +6,6 @@ import { redirect } from 'next/navigation';
 
 export default async function logout() {
   const cookieStore = await cookies();
-  cookieStore.delete(CookieNames.AUTHENTICATION_COOKIE);
+  cookieStore.delete(CookieNames.Authentication_Cookie);
   redirect('/auth/login');
 }

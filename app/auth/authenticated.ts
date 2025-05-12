@@ -3,5 +3,5 @@ import { CookieNames } from '../common/enums/cookie-names.enum';
 
 export default async function authenticated() {
   const cookieStore = await cookies();
-  return cookieStore.has(CookieNames.AUTHENTICATION_COOKIE);
+  return cookieStore.has(CookieNames.Authentication_Cookie);
 }

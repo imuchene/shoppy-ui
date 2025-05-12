@@ -1,6 +1,6 @@
 'use server';
 
-import { FormError } from '@/app/common/interfaces/form-error.interface';
+import { FormResponse } from '@/app/common/interfaces/form-response.interface';
 import { API_URL } from '@/app/common/constants/environment';
 import { getErrorMessage } from '@/app/common/util/errors';
 import { jwtDecode } from 'jwt-decode';
@@ -9,7 +9,10 @@ import { redirect } from 'next/navigation';
 import { CookieNames } from '@/app/common/enums/cookie-names.enum';
 import { revalidatePath } from 'next/cache';
 
-export default async function login(_prevState: FormError, formData: FormData) {
+export default async function login(
+  _prevState: FormResponse,
+  formData: FormData,
+) {
   const res = await fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -36,7 +39,7 @@ const setAuthCookie = async (response: Response) => {
     const cookieStore = await cookies();
 
     cookieStore.set({
-      name: CookieNames.AUTHENTICATION_COOKIE,
+      name: CookieNames.Authentication_Cookie,
       value: token,
       secure: true,
       sameSite: 'lax',

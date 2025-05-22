@@ -1,30 +1,36 @@
-import { Card, Stack, Typography } from '@mui/material';
+'use client';
+
+import { Card, CardActionArea, Stack, Typography } from '@mui/material';
 import { Product as IProduct } from './interface/product.interface';
 import Image from 'next/image';
-import { API_URL } from '../common/constants/environment';
+import { getProductImage } from './product-image';
+import { useRouter } from 'next/navigation';
 
 interface ProductProps {
   product: IProduct;
 }
 
 export default function Product({ product }: ProductProps) {
+  const router = useRouter();
   return (
-    <Card className='p-4'>
-      <Stack gap={3}>
-        <Typography variant='h4'>{product.name}</Typography>
-        {product.imageExists && (
-          <Image
-            src={`${API_URL}/images/products/${product.id}.jpeg`}
-            width='0'
-            height='0'
-            className='h-auto w-full'
-            alt='Picture of the Product'
-            sizes='100vw'
-          />
-        )}
-        <Typography>{product.description}</Typography>
-        <Typography>${product.price}</Typography>
-      </Stack>
-    </Card>
+    <CardActionArea onClick={() => router.push(`/products/${product.id}`)}>
+      <Card className='p-4'>
+        <Stack gap={3}>
+          <Typography variant='h4'>{product.name}</Typography>
+          {product.imageExists && (
+            <Image
+              src={getProductImage(product.id)}
+              width='0'
+              height='0'
+              className='h-auto w-full'
+              alt='Picture of the Product'
+              sizes='100vw'
+            />
+          )}
+          <Typography>{product.description}</Typography>
+          <Typography>${product.price}</Typography>
+        </Stack>
+      </Card>
+    </CardActionArea>
   );
 }

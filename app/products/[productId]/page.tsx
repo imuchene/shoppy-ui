@@ -2,12 +2,14 @@ import { Grid, Stack, Typography } from '@mui/material';
 import getProduct from './get-product';
 import Image from 'next/image';
 import { getProductImage } from '../product-image';
+import Checkout from '@/app/checkout/checkout';
 
 interface SingleProductProps {
-  params: { productId: string };
+  params: Promise<{ productId: string }>;
 }
 
-export default async function SingleProduct({ params }: SingleProductProps) {
+export default async function SingleProduct(props: SingleProductProps) {
+  const params = await props.params;
   const product = await getProduct(params.productId);
 
   return (
@@ -29,6 +31,7 @@ export default async function SingleProduct({ params }: SingleProductProps) {
           <Typography variant='h2'>{product.name}</Typography>
           <Typography>{product.description}</Typography>
           <Typography variant='h4'>{product.price}</Typography>
+          <Checkout productId={product.id} />
         </Stack>
       </Grid>
     </Grid>

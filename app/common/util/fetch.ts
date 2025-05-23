@@ -9,14 +9,15 @@ export const getHeaders = async () => {
   return requestHeaders;
 };
 
-export const post = async (path: string, formData: FormData) => {
+export const post = async (path: string, data: FormData | object) => {
   const headers = await getHeaders();
+  const body = data instanceof FormData ? Object.fromEntries(data) : data;
   headers.append('Content-Type', 'application/json');
 
   const res = await fetch(`${API_URL}/${path}`, {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify(Object.fromEntries(formData)),
+    body: JSON.stringify(body),
   });
 
   const parsedRes = await res.json();

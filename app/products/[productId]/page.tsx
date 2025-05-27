@@ -30,7 +30,7 @@ export default async function SingleProduct(props: SingleProductProps) {
         <Stack gap={3}>
           <Typography variant='h2'>{product.name}</Typography>
           <Typography>{product.description}</Typography>
-          <Typography variant='h4'>{product.price}</Typography>
+          <Typography variant='h4'>${product.price}</Typography>
           <Checkout productId={product.id} />
         </Stack>
       </Grid>
